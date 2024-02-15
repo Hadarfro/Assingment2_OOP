@@ -3,18 +3,18 @@ from SocialNetwork import SocialNetwork
 
 def main():
     # Creating the network
-    network = SocialNetwork("Twitter")
+    network = SocialNetwork("Twitter") # constractor in SocialNetwork
     print()
 
     # Creating users
-    u1 = network.sign_up("Alice", "pass1")
+    u1 = network.sign_up("Alice", "pass1") # function in SocialNetwork
     u2 = network.sign_up("Bob", "pass2")
     u3 = network.sign_up("Charlie", "pass3")
     u4 = network.sign_up("David", "pass4")
     u5 = network.sign_up("Eve", "pass5")
 
     # Creating followers
-    u1.follow(u2)
+    u1.follow(u2) # function in Users
     u1.follow(u5)
     u2.follow(u5)
     u2.follow(u1)
@@ -29,18 +29,18 @@ def main():
     # Creating text post
     p1 = u1.publish_post("Text", "In 1492, Christopher Columbus set sail,\n"
                                  "hoping to find a westward route to Asia, but instead,\n"
-                                 "he discovered the Americas, changing the course of history forever.")
+                                 "he discovered the Americas, changing the course of history forever.") # p1 is "Posts"s type
     # Creating image post
-    p2 = u4.publish_post("Image", 'image1.jpg')
+    p2 = u4.publish_post("Image", 'image1.jpg') # publish_post is a function in Users
 
     # Creating sale post
     p3 = u3.publish_post("Sale", "Toyota prius 2012", 42000, "Haifa")
 
     # Creating likes and comments
-    p2.like(u4)
+    p2.like(u4) # function in Posts
     p1.like(u4)
     p1.like(u2)
-    p1.comment(u3, "Columbus's bold journey!")
+    p1.comment(u3, "Columbus's bold journey!") # function in Posts
     p2.comment(u1, "So beautiful!")
     p2.like(u1)
     p2.like(u2)
@@ -50,7 +50,7 @@ def main():
     print()
 
     # Price reduction of the product for sale
-    p3.discount(10, "pass3")
+    p3.discount(10, "pass3") # function in SalePost that calculate the price after sail.
     print()
 
     # more likes and comments
@@ -60,7 +60,7 @@ def main():
     print()
 
     # Defining the product as sold
-    p3.sold("pass3")
+    p3.sold("pass3") # define the product is sold
     print()
 
     print(p3)
