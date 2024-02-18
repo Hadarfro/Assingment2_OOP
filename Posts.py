@@ -11,6 +11,7 @@ class PostType(Enum):
     IMAGEPOST = "imagePost"
     SALEPOST = "salePost"
 
+
 class Posts:
     like_count = 0
     comments = []
