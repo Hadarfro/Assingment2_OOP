@@ -1,7 +1,7 @@
-
+from Users import Users
 
 class SocialNetwork:
-    __active_network = None #Singleton
+    __active_network = None  # Singleton
     userName = None
     password = None
     check_userName = []
@@ -27,9 +27,7 @@ class SocialNetwork:
             self.password = input()
 
     def log_in (self,  userName,  password):
-         self.users(userName, password).isConnected()
-
-
+         self.users(userName, password).isConnected() == True
 
     def log_out (self, userName):
-        return False
+        self.users(userName).isConnected() == False
