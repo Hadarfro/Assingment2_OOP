@@ -12,10 +12,11 @@ class PostType(Enum):
     SALEPOST = "salePost"
 
 class Posts:
-    likeCount = 0
+    like_count = 0
     comments = []
     owner = None
-    def create_post(self, post_type, *content):
+
+    def create_post(self, post_type, owner, *content):
         if post_type == post_type.TEXTPOST:
             text = content[0]
             return TextPost(text)
@@ -23,13 +24,13 @@ class Posts:
             image = content[0]
             return ImagePost(image)
         elif post_type == post_type.SALEPOST:
-            discription = content[0]
+            description = content[0]
             price = content[1]
             location = content[2]
-            available = content[3]
-            return SalePost(discription, price, location, available)
+            return SalePost(description, price, location)
         else:
             raise ValueError("Invalid post type")
+
     def like(self):  # continue
         self.likeCount += 1
 
@@ -37,6 +38,6 @@ class Posts:
         self.comments.append(user, content)
 
     @abstractmethod
-    def printInfo(self, user):
+    def print_info(self, user):
         pass
 
