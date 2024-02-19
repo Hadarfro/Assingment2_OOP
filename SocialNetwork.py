@@ -1,5 +1,4 @@
 import self
-from Users import Users
 
 
 class SocialNetwork:
@@ -8,9 +7,9 @@ class SocialNetwork:
     password = None
     check_userName = []
 
-    def __new__(cls):
-        if cls.__active_network is None: # If an instance does not exist -> create a new one
-            cls.__active_network = super().__new__(cls) # super -> from Object class
+    def __new__(cls, name):
+        if cls.__active_network is None:  # If an instance does not exist -> create a new one
+            cls.__active_network = super().__new__(cls)  # super -> from Object class
         return cls.__active_network
 
     def sign_up(self, new_username, new_password):

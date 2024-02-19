@@ -1,5 +1,4 @@
 from Posts import Posts
-from SocialNetwork import SocialNetwork
 
 
 class Users:
