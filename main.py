@@ -7,7 +7,7 @@ def main():
     print()
 
     # Creating users
-    u1 = network.sign_up("Alice", "pass1") # function in SocialNetwork
+    u1 = network.sign_up("Alice", "pass1")  # function in SocialNetwork
     u2 = network.sign_up("Bob", "pass2")
     u3 = network.sign_up("Charlie", "pass3")
     u4 = network.sign_up("David", "pass4")
@@ -37,10 +37,10 @@ def main():
     p3 = u3.publish_post("Sale", "Toyota prius 2012", 42000, "Haifa")
 
     # Creating likes and comments
-    p2.like(u4) # function in Posts
+    p2.like(u4)  # function in Posts
     p1.like(u4)
     p1.like(u2)
-    p1.comment(u3, "Columbus's bold journey!") # function in Posts
+    p1.comment(u3, "Columbus's bold journey!")  # function in Posts
     p2.comment(u1, "So beautiful!")
     p2.like(u1)
     p2.like(u2)

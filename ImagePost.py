@@ -16,5 +16,5 @@ class ImagePost(Posts):
 
     def print_info(self):
         image_string = "imagePost"
-        print(f"{self.owner.name} {Posts.create_post(self,image_string, self.owner,self.image).display()}")
+        print(f"{self.owner.name} {Posts.create_post(image_string, self.owner, self.image).display()}")
 
