@@ -2,11 +2,12 @@ from Posts import Posts
 
 
 class TextPost(Posts):
-    text = ""
 
-    def __init__(self, text, owner, like_count, comments):
+    def __init__(self, user, text):  # fixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        super().__init__(user)
         self.text = text
-        super().__init__(owner, like_count, comments)
 
     def print_info(self):
-        print(f"{self.text} {self.owner.name}")
+        print(f"{self._user._username} published a post:")
+        print(f"\"{self.text}\"")
+        print()

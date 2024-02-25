@@ -1,50 +1,62 @@
+from Observer import Sender
+from FactoryPosts import FactoryPosts, PostType
 
 
 class Users:
-    followers = []
-    posts = []
-    notification = []
-    isConnected = False
-    name = None
-    password = None
-
-    def __init__(self, name, password):
-        self.name = name
-        self.password = password
+    def __init__(self, username, password):
+        self._username = username
+        self._password = password
+        self._followers = []
+        self._posts = []
+        self.notification = []
         self.isConnected = True
+        self.sender = Sender()
+
+    def username(self):  # get username
+        return self._username
+
+    def password(self):  # get password
+        return self._password
 
     def follow(self, user):
         if self.isConnected:
-            self.followers.append(user)
-            print("Follow succeeded")
+            if self not in user._followers:
+                user._followers.append(self)
+                user.sender.register(self)  # Observer
+                print(f"{self._username} started following {user._username}")
 
     def unfollow(self, user):
         if self.isConnected:
-            self.followers.remove(user)
-            print("Unfollow succeeded")
+            if self not in user._followers:
+                user._followers.remove(self)
+                user.sender.unregister(self)  # Observer
+                print(f"{self._username} unfollowed {user._username}")
 
     def publish_post(self, type_post, *content):  # using factory
         if self.isConnected:
-            post = Posts.create_post(type_post, Users(self.name, self.password), *content)
-            return post
+            if(type_post == "Text"):
+                new_post = FactoryPosts.created_post(PostType.TEXTPOST, self, *content)
+                self._posts.append(new_post)
+            if(type_post == "Image"):
+                new_post = FactoryPosts.created_post(PostType.IMAGEPOST, self, *content)
+                self._posts.append(new_post)
+            if (type_post == "Sale"):
+                new_post = FactoryPosts.created_post(PostType.SALEPOST, self, *content)
+                self._posts.append(new_post)
 
-    @staticmethod
-    def update(message):
-        print(f"{message}")
+            self.sender.notify(f"{self._username} has a new post")
+            new_post.print_info()
+            return self._posts[-1]
 
-    def notify(self, new_post):
-        print("Received a notification for a new post")
-        for follower in self.followers:
-            follower.update(f"{self.name} published a post {new_post}")
-
-    @staticmethod
-    def print_info(self, user):
-        print(f"Followers: {user.followers}")
-        print(f"Posts: {user.posts}")
-        print(f"Notification: {user.notification}")
+    def print_info(self):
+        print(f"User name: {self._username}")
+        print(f"Number of followers: {len(self._followers)}")
+        print(f"Number of posts: {len(self._posts)}")
 
     def print_notifications(self):
+        print(f"{self._username}s notifications:")
         for notif in reversed(self.notification):
             print(notif)
 
-
+    def update(self, content):
+        self.notification.append(content)
